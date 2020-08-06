@@ -1,15 +1,38 @@
 import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
-import NavbarMenu from "./Navigation";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ScrollToTopRoute from "components/core/ScrollToTopRoute";
+import Home from "pages/Home";
+import Songs from "pages/Songs"
+import SongPlaying from "pages/Songs/SongPlaying";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
-        <NavbarMenu />
+        <Switch>
+          <ScrollToTopRoute
+            exact={true}
+            path={"/"}
+            component={Home}
+            pageTitle="Αρχική"
+            exact
+          />
+            <ScrollToTopRoute
+                exact={true}
+                path={"/songs"}
+                component={Songs}
+                pageTitle="Τραγούδια"
+            />
+          <ScrollToTopRoute
+              exact={true}
+              path={"/songplaying"}
+              component={SongPlaying}
+              pageTitle="Γρατσούνα"
+          />
+        </Switch>
       </Router>
-    </div>
+    </>
   );
 }
 
